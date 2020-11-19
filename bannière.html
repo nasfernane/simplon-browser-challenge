@@ -3,7 +3,8 @@
   <head>
     <link rel="stylesheet" href="./assets/stylesheet/css/banniere.css">
 </head>
-  <body>
+  <!-- on charge au lancement de la page la fonction initPopUp()  -->
+  <body onload="initPopUp()">
     <h1>Bannière JS (Methode commercial pour proposer une promo ou une possibilité d'inscription)</h1>
      <div class="brief">
       <p>
@@ -13,9 +14,41 @@
         <br>3/ Placez un bouton en haut à droite de la bannière pour fermer celle-ci.
         <br>(voir bannière.html)
       </p>
+
+      <div id="banner">
+          <h2>Inscrivez vous à notre newsletter !</h2>
+          <p>Tous les jours vous recevrez des informations trépidantes sur le mode de vie des langoustes</p>
+          <input type="email" placeholder="ex: jean-rené@gmail.com">
+          <input type="submit">
+          <span id="close">&times;</span>
+      </div>
     </div>
+
     <script>
       //TODO
+
+      // on récupère la bannière créée en HTML dans une constante
+      const banner = document.querySelector('#banner');
+      // on récupère son bouton de fermeture dans une seconde constante
+      const closeButton = banner.querySelector('#close');
+
+      // on crée une fonction se lancera onload sur le body, au lancement de la page web
+      const initPopUp = () => {
+          // on définit un timer...
+          setTimeout(() => {
+              // qui affiche le contenu de la fenêtre modale...
+              banner.style.display = 'block';
+            // ... au bout de cinq secondes.
+          }, 5000);
+      }
+
+      // écouteur sur un évènement click sur le bouton de la fenêtre modale 
+      closeButton.addEventListener("click", () => {
+          // on annule l'affichage de la bannière
+          banner.style.display = 'none';
+      })
+
+
     </script>
   </body>
 </html>

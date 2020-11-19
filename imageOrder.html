@@ -31,6 +31,44 @@
         //3 - Placer un 'micro' avec un addEventListener (click) sur l'élément HTML 'bouton paramoteur'
         //4 - Dans le callback de l'addEventListener, faire disparaitre le liste 'multiaxe' à l'aide de ce code: multiaxe.style.display = 'none'; Tester cette instruction dans la console du navigateur.
         //5 - Placer un 'debugger' dans le callback en cas de problème.
+       
+
+
+        // on récupère les trois boutons dans des constantes
+        const boutonParamoteur = document.querySelector('#paramoteur');
+        const boutonMultiaxe = document.querySelector('#multiaxe');
+        const boutonAll = document.querySelector('#all');
+
+        //on récupère les deux listes d'images dans des constantes
+        const listeParamoteur = document.querySelector('ul.paramoteur');
+        const listeMultiaxe = document.querySelector('ul.multiaxe');
+
+
+        // écouteur sur l'évènement click sur bouton Paramoteur =>
+        boutonParamoteur.addEventListener("click", () => {
+            // on camougle les images des avions Multiaxe
+            listeMultiaxe.style.display = 'none';
+            // on montre les images de paramoteur
+            listeParamoteur.style.display = 'block';
+        })
+
+        // écouteur sur l'évènement click sur bouton Multiaxe =>
+        boutonMultiaxe.addEventListener("click", () => {
+            // on camougle les images de paramoteur
+            listeParamoteur.style.display = 'none';
+            // on montre les images des avions Multiaxe
+            listeMultiaxe.style.display = 'block';
+        })
+
+        // écouteur sur l'évènement click sur bouton ALl =>
+        boutonAll.addEventListener("click", () => {
+            // on affiche toutes les images des deux listes
+            listeParamoteur.style.display = 'block';
+            listeMultiaxe.style.display = 'block';
+        })
+    
+
+
       </script>
   </body>
 </html>

@@ -13,14 +13,58 @@
         <br>(voir shopping-list.html)
       </p>
     </div>
-    <form action="" id="formulaire" style="text-align: center;">
-      <input type="text" placeholder="ex: poire">
-    <button id="bouton">Envoyer</button>
-    <button id="Supprime">Supprimer ma liste</button>
+    <form onsubmit="return false" action="" id="formulaire" style="text-align: center;">
+      <input id="shopListInput" type="text" placeholder="ex: poire" />
+    <button id="bouton" type="button">Envoyer</button>
+    <button id="reset" type="button">Supprimer ma liste</button>
     </form>
-    <div id="maListeDeCourse">Liste : </div>
+    <div id="maListeDeCourse">
+        <p>Liste : </p>
+        <ul id="listeCourse"></ul>
+    </div>
     <script>
       //TODO
+        // on rajoute une id à l'input pour le récupérer plus facilement
+        // on rajoute un type button à nos boutons pour éviter qu'il refresh la page au clic
+        // on rajoute le paramètre onsubmit="return false" au formulaire pour que la page se ne rafraichisse pas en appuyant sur Entrée
+        
+        // on crée une liste en HTML puis on récupère son contenu dans une variable
+        let listeCourse = document.querySelector("#listeCourse");
+        // on récupère le bouton d'ajout à la lise dans une constante
+        const sendButton = document.querySelector("#bouton");
+        // on récupère le bouton qui servira à supprimer la liste dans une autre variable
+        const resetButton = document.querySelector("#reset");
+
+
+        // si l'utilisateur utilise le bouton d'envoi =>
+        // écouteur sur l'évènement click sur sendBUtton =>
+        sendButton.addEventListener("click", () => {
+            // on récupère la valeur de l'input dans une variable
+            let inputValue = document.querySelector('#shopListInput').value;
+            // on ajoute une balise li à la liste, contenant la valeur de l'input
+            listeCourse.insertAdjacentHTML("beforeend", `<li>${inputValue}</li>`);
+        })
+
+        // si l'utilisateur utilise la touche Entrée pour valider sa saisie =>
+        // écouteur sur évènement keydown sur l'input =>
+        document.querySelector('#shopListInput').addEventListener("keydown", (e) => {
+            // si la touche pressée == Entrée
+            if(e.key == "Enter") {
+                // on récupère la valeur de l'input dans une variable
+            let inputValue = document.querySelector('#shopListInput').value;
+            // on ajoute une balise li à la liste, contenant la valeur de l'input
+            listeCourse.insertAdjacentHTML("beforeend", `<li>${inputValue}</li>`);
+            } else { return;}
+        })
+
+        // pour supprimer la liste
+        // écouteur sur l'évènement click sur le resetButton =>
+        resetButton.addEventListener("click", () => {
+            // on remplace le contenu HTML de la liste de course par une chaîne de caractère vide, ce qui supprime la liste
+            listeCourse.innerHTML = "";
+        })
+
+
     </script>
   </body>
 </html>

@@ -14,6 +14,27 @@
       <div id="photo1"><img src="./assets/images/round-photo/photo1.jpg" width="20%"></div>
     <script>
         //TODO
+        
+        // on récupère l'image dans une constante
+        const image = document.querySelector('#photo1 img');
+
+        // ajout d'un écouteur sur évènement au survol de la souris sur l'image =>
+        image.addEventListener("mouseover", () => {
+            // ajout d'une ombre sur l'image
+            image.style.boxShadow = '3px 3px';
+            // ajout d'un timer pour annuler l'effet...
+            setTimeout(() => {
+                image.style.boxShadow = 'none';
+            // ... au bout d'une seconde
+            }, 1000);
+        })
+        
+        // ajout d'un écouteur sur évènement click sur la souris =>
+        image.addEventListener("click", (e) => {
+            // ajoute une classe round-photo à la cible de l'évènement présent
+            e.currentTarget.classList.add("round-photo");
+        })
+
     </script>
   </body>
 </html>

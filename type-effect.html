@@ -4,13 +4,40 @@
     <title>Type effect</title>
     <link rel="stylesheet" href="./assets/stylesheet/css/type-effect.css">
   </head>
-  <body>
+  <body onload="initTitle()">
     <h2>Faire apparaitre le mots de votre choix lettre par lettre dans la balise 'h1' (voir code...)
     <br>(voir type-effect.html)
     </h2>
-    <h1></h1>
+    <h1 id="titre"></h1>
   <script>
     //TODO
+
+    // on crée une fonction qui se chargera onload sur le body
+    const initTitle = () => {      
+            // on déclare un tableau title qui comprend les lettres de notre titre
+            const title = ['T', 'o', 'p', 'i', 'n', 'a', 'm', 'b', 'o', 'u', 'r'];
+            // on déclare une variable timer pour pouvoir incrémenter la durée du setTimeout
+            let timer = 0;
+            // pour chaque élément du tableau Title...
+            title.forEach(element => {
+                // on incrémente la durée du timer de 100 millisecondes
+                timer += 100;
+                // on lance le timer qui...
+                setTimeout(() => {
+                // ...ajoute au titre la lettre correspondante dans le tableau
+                document.querySelector('#titre').innerHTML += element;
+            }, timer);   
+            });
+            
+        
+        }
+        
+            
+    
+        
+    
+
+
   </script>
   </body>
 </html>

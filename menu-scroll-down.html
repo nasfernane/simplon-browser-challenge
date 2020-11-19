@@ -18,7 +18,27 @@
     </h1>
   </div>
     <script>
-      //TODO
+    //TODO
+
+    // on récupère le menu dans une constante
+    const stickyMenu = document.querySelector('nav');
+    console.log(stickyMenu);
+
+    // on place un écouteur sur la fenêtre, sur l'évènement scroll =>
+    window.addEventListener("scroll", () => {
+        // on stocke dans la variable y le défilement vertical en pixels
+        let y = window.pageYOffset;
+        // si ce défilement vertical est supérieur ou égal à 70 pixels...
+        if(y >= 70) {
+            // ... on ajoute la classe fixed-position à notre menu
+            stickyMenu.classList.add("fixed-position");
+        } else { // autrement...
+            //... on lui enlève la classe
+            stickyMenu.classList.remove("fixed-position");
+        }
+    });
+     
+
     </script>
   </body>
 </html>
