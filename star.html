@@ -22,6 +22,52 @@
   </div>
   <div class="test"></div>
   <script>
+      
+      // on récupère les images d'étoiles dans une NodeList stockée dans une constante
+      const stars = document.querySelectorAll('#list-of-stars li');
+      // on transforme la NodeLIst en tableau
+      const starsArray = Array.from(stars);
+
+      // on crée une fonction pour enlever ou supprimer la classe star-checked aux éléments voulus
+      const addOrRemoveClass = () => {
+          // pour chaque élément du tableau...
+          starsArray.forEach(element => {
+            // si la position de l'étoile est inférieure ou égale à la position de l'évènement
+            if (starsArray.indexOf(element) <= starsArray.indexOf(event.currentTarget)){
+                // on lui ajoute la classe star-checked pour la mettre en jaune
+                element.classList.add("star-checked");
+            } else {
+                // sinon on lui supprime la classe
+                element.classList.remove("star-checked");
+            }
+          });
+      }
+
+    
+    // écouteur sur la première étoile
+    document.querySelector('#list-of-stars li').addEventListener('click', (event) => {
+        addOrRemoveClass();
+    })
+    // écouteur sur la deuxième étoile
+    document.querySelector('#list-of-stars li:nth-child(2)').addEventListener('click', (event) => {
+        addOrRemoveClass();
+    })
+    // écouteur sur la troisièe étoile
+    document.querySelector('#list-of-stars li:nth-child(3)').addEventListener('click', () => {
+        addOrRemoveClass();
+    })
+    // écouteur sur la quatrième étoile 
+    document.querySelector('#list-of-stars li:nth-child(4)').addEventListener('click', () => {
+        addOrRemoveClass();
+    })
+    // écouteur sur la cinquième étoile 
+    document.querySelector('#list-of-stars li:nth-child(5)').addEventListener('click', () => {
+        addOrRemoveClass();
+    })
+  
+
+    
+      
     //TODO
   </script>
 </body>

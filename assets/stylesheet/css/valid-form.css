@@ -1,27 +1,27 @@
-body{
-  background-color: white; 
-  color: gray; 
-  font-family: 'Roboto', sans-serif;
+body {
+  background-color: white;
+  color: gray;
+  font-family: "Roboto", sans-serif;
 }
 
-h1{
-  margin-top: 300px; 
+h1 {
+  margin-top: 300px;
   text-align: center;
 }
 
-.banner p{
+.banner p {
   text-align: center;
 }
 
-#valid-form{
-  text-align: center;
-};
-
-.watchPwd{
+#valid-form {
   text-align: center;
 }
 
-input #button:hover{
+.watchPwd {
+  text-align: center;
+}
+
+input #button:hover {
   cursor: pointer;
 }
 
@@ -34,22 +34,21 @@ input #button:hover{
   width: 20%;
 }
 
-.default-border{
+.default-border {
   border: 2px solid gray;
 }
 
-
 /*--------------------*/
 
-.good-password{
+.good-password {
   border: 2px solid green;
 }
 
-.bad-password{
+.bad-password {
   border: 2px solid red;
 }
 
-.error-message{
-  text-align: center; 
+.error-message {
+  text-align: center;
   color: red;
 }

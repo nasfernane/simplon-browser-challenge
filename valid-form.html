@@ -12,15 +12,115 @@
       <p>Une checkbox permettra de voir le password en toute lettre.</p>
       <p>Challenge supplémentaire : lorsque l'on commence à entrer une chaine de caractère dans le formulaire 'password', celui-ci prend des contours (border...) rouge. Puis passe au vert dès lors que l'on rentre 8 caractères ou plus.<br>(voir valid-form.html)</p>
     </div>
-    <form id="valid-form">
+    <form onsubmit="return false" id="valid-form">
       <input class="default-border" id="login" type="text" label="login" placeholder="Login">
       <input class="default-border" id="pwd" type="password" label="pwd" placeholder="Mot de passe">
       <input class="default-border" id="button" type="submit" value="Submit" style="height: 37px;">
     </form>
-    <p class="watchPwd"><input type="checkbox" id="checkbox" name="checkbox">Voir le mot de passe.</p>
+    <p class="checkPwd"><input type="checkBox" id="checkBox" name="checkbox">Voir le mot de passe.</p>
     <div id="error-message"></div>
     <script>
       //TODO
+        
+        // On récupère le bouton submit dans une constante
+        const submitButton = document.getElementById("button");
+        
+        // on crée une première fonction pour vérifier la longueur du login
+        const verifyLogin = () => {
+            // constante pour récupérer la longueur de la valeur entrée dans l'input Login
+            const loginLength = document.getElementById("login").value.length;
+            // si cette longueur est inférieure à 15
+            if(loginLength < 15) {
+                // renvoie true
+                return true;
+                // sinon
+            } else {
+                // renvoie false
+                return false;
+            }
+        }
+
+        // deuxième fonction pour vérifier la longueur du mot de passe
+        const verifyPassword = () => {
+            // constante pour récupérer la longueur de la valeur entrée dans l'input pwd
+            const passwordLength = document.getElementById("pwd").value.length;
+            // si la longueur est au moins égale à 8
+            if(passwordLength >= 8) {
+                // renvoie true
+                return true;
+                // sinon
+            } else {
+                // renvoie false
+                return false;
+                
+            }
+        }
+
+        // constante qui combine les deux précédentes fonctions et renvoie un message de succès ou d'échec
+        const verifySecurity = () => {
+            // si les deux fonctions de vérifications renvoie true...
+            if(verifyLogin() && verifyPassword()) {
+                // message de succès
+                alert('Votre message a bien été envoyé :)');
+              // sinon, si au moins l'une des fonctions de vérifications renvoie false...  
+            } else {
+                // message d'échec
+                alert('Votre login doit faire moins de 15 caractères et votre mot de passe doit contenir au moins 8 caractères');
+            }
+      }
+
+      // fonction pour transformer la couleur de la bordure du mot de passe quand l'utilisateur est en saisie
+      const transformPasswordBorder = () => {
+            // si la longueur de la valeur du mdp est inférieure à 8...
+            if(document.getElementById("pwd").value.length < 8) {
+                // on supprime la classe good-password au cas où elle aurait été préalablement ajoutée
+                document.getElementById("pwd").classList.remove("good-password");
+                // et on ajoute la classe bad-password 
+                document.getElementById("pwd").classList.add("bad-password");
+                //autrement si la longueur de la valeur de l'input pwd est supérieure ou égale à 8
+            } else if (document.getElementById("pwd").value.length >= 8) { 
+                // on supprime la classe bad-password
+                document.getElementById("pwd").classList.remove("bad-password");
+                // on ajoute la classe good-password
+                document.getElementById("pwd").classList.add("good-password");
+            }
+      }
+
+      // fonction qui vérifie la longueur du mot de passe quand l'input perd le focus, pour annuler le changement de couleur de la bordure si l'utilisateur efface complètement sa saisie
+      const checkPassword = () => {
+        // si la longueur de la valeur de l'input pwd est égale à 0
+        if(document.getElementById("pwd").value.length === 0) {
+                // on supprime les deux classes liées au changement de couleur de la bordure de l'input
+                document.getElementById("pwd").classList.remove("good-password");
+                document.getElementById("pwd").classList.remove("bad-password");
+            }
+      }
+
+      
+      // fonction qui vérifie si la checkbox est cochée pour modifier l'affichage du mot de passe
+      const passwordVisibility = () => {
+          // si la checkbox est cochée...
+          if (document.getElementById("checkBox").checked) {
+            // ...on change le type de l'input pour afficher le texte  
+            document.getElementById("pwd").type= "text";
+          } else { // sinon...
+            // on remet le type de l'input en password, par défaut
+            document.getElementById("pwd").type= "password";
+          }
+      }
+
+
+      // écouteur sur l'évènement click sur le button submit, qui lance la fonction de vérification globale
+      submitButton.addEventListener("click", verifySecurity);
+      //écouteur sur l'évènement keydown sur l'input pwd, qui lance la fonction du changement de couleur de la bordure
+      document.querySelector("#pwd").addEventListener("keydown", transformPasswordBorder);
+      // écouteur sur l'évènement focusout sur l'input pwd, qui lance la fonction de vérification de la longueur du mot de passe
+      document.querySelector("#pwd").addEventListener("focusout", checkPassword);
+
+      // écouteur sur l'évènement click sur la checkBox pour modifier la visibilité du mot de passe
+      document.querySelector("#checkBox").addEventListener("click", passwordVisibility);
+        
+      
     </script>
   </body>
 </html>

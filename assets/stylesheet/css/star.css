@@ -1,35 +1,34 @@
-body{
-  font-family: 'Roboto', sans-serif;
+body {
+  font-family: "Roboto", sans-serif;
 }
 
-h1{
-  text-align: center; 
+h1 {
+  text-align: center;
   color: gray;
 }
 
-.star{
-  width: 600px; 
-  margin: 0px auto; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  height: 100vh; 
+.star {
+  width: 600px;
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
   flex-wrap: wrap;
 }
 
-#list-of-stars{
-  display: flex; 
-  list-style: none; 
-  font-size: 100px; 
+#list-of-stars {
+  display: flex;
+  list-style: none;
+  font-size: 100px;
   color: gray;
 }
 
-
 /* -------------------------- */
-.star-checked{
-  color: #FECC02;
+.star-checked {
+  color: #fecc02;
 }
 
-.star-unchecked{
-  color: #D5D5D5;
+.star-unchecked {
+  color: #d5d5d5;
 }
