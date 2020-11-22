@@ -1,5 +1,41 @@
-body{
-    margin-top: 50px; 
-    text-align: center; 
-    color: gray;
+body {
+  margin-top: 50px;
+  text-align: center;
+  color: gray;
+}
+
+#carousel {
+  position: relative;
+  width: 80%;
+  margin: auto;
+}
+
+img#slide {
+  height: 600px;
+}
+
+#previous,
+#next {
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+  position: absolute;
+  top: 300px;
+  font-size: 50px;
+  color: rgba(220, 220, 220, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+}
+
+#previous {
+  left: 0;
+}
+
+#next {
+  right: 0;
+}
+
+#carousel:hover #previous,
+#carousel:hover #next {
+  opacity: 1;
 }
