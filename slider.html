@@ -1,60 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Slider</title>
-  <link rel="stylesheet" href="./assets/stylesheet/css/slider.css">
-</head>
-<body>
-  <h1>Vous trouverez dans le dossier '/assets/images/slider', 4 photos. Codez un slider
-  <br>(voir slider.html)
-  </h1>
-  <div id="carousel">
-    <img src="assets/images/slider/alpaga2.jpg" id="slide">
-    <span id="previous"><</span>
-    <span id="next">></span>
-  </div>
-  
-  <script>
-    // on stocke les images du slider dans un tableau
-    const slider = ["assets/images/slider/alpaga1.jpg", "assets/images/slider/alpaga2.jpg", "assets/images/slider/alpaga3.jpg"];
-    // on récupère le bouton pour switch sur l'image précédente
-    const previous = document.querySelector('#previous');
-    // on récupère le bouton pour switch sur l'image suivante
-    const next = document.querySelector('#next');
-    // on déclare un nombre de référence qui servira pour définir la position du caroussel
-    let number = 0;
-   
-    // on crée une fonction pour bifurquer dans le caroussel, avec un clé qui définira la modification de l'index dans le tableau
-    const switchSlide = (key) => {
+  <head>
+    <meta charset="UTF-8" />
+    <title>Slider</title>
+    <link rel="stylesheet" href="./assets/stylesheet/css/slider.css" />
+  </head>
+  <body onload="autoSlide()">
+    <h1>
+      Vous trouverez dans le dossier '/assets/images/slider', 4 photos. Codez un
+      slider <br />(voir slider.html)
+    </h1>
+    <div id="carousel">
+      <img src="assets/images/slider/alpaga1.jpg" id="slide" />
+      <span id="previous"><</span>
+      <span id="next">></span>
+    </div>
+
+    <script>
+      "use strict;";
+
+      // VARIABLES
+      // on stocke les images du slider dans un tableau
+      const slider = [
+        "assets/images/slider/alpaga1.jpg",
+        "assets/images/slider/alpaga2.jpg",
+        "assets/images/slider/alpaga3.jpg",
+      ];
+      // on récupère le bouton pour switch sur l'image précédente
+      const previous = document.querySelector("#previous");
+      // on récupère le bouton pour switch sur l'image suivante
+      const next = document.querySelector("#next");
+      // on déclare un nombre de référence qui servira pour définir la position du caroussel
+      let number = 0;
+      // FIN VARIABLES
+
+      // FONCTIONS
+
+      // on crée une fonction pour bifurquer dans le caroussel, avec un clé qui définira la modification de l'index dans le tableau
+      const switchSlide = (key) => {
         // à chaque clic sur l'une des flèches, donc à chaque appel de fonction, on change la position de caroussel en lui concaténant la clé correspondant à la flèche cliquée
         number = number + key;
         // si la position est inférieure à 0 (on est sur la première image et on clique previous pour arriver sur la troisième)
         if (number < 0) {
-            // on définit le nombre sur la taille du tableau -1 pour obtenir la dernière image contenue dans le tableau
-            number = slider.length - 1;
-            // autrement si le nombre est plus grand que la taille du tableau
+          // on définit le nombre sur la taille du tableau -1 pour obtenir la dernière image contenue dans le tableau
+          number = slider.length - 1;
+          // autrement si le nombre est plus grand que la taille du tableau
         } else if (number > slider.length - 1) {
-            // on définit la valeur 0 pour revenir à la première image
-            number = 0;
+          // on définit la valeur 0 pour revenir à la première image
+          number = 0;
         }
         // on change la source de l'élément slide pour basculer entre les images, en utilisant le nombre obtenu comme indice dans le tableau
         document.getElementById("slide").src = slider[number];
-    }
+      };
 
-    // écouteur sur l'évènement click sur la flèche previous..
-    previous.addEventListener('click', event => {
+      // fonction chargée onload sur body pour lancer le slide +1 toutes les 3s
+      const autoSlide = () => {
+        // première version, fonction qui s'appelle elle-même toutes les 3s
+        // setTimeout(() => {
+        //   switchSlide(+1);
+        //   autoSlide();
+        // }, 3000);
+        // deuxieme version avec un intervalle
+        setInterval(function () {
+          switchSlide(+1);
+        }, 3000);
+      };
+
+      // FIN FONCTIONS
+
+      // ECOUTEURS
+
+      // écouteur sur l'évènement click sur la flèche previous..
+      previous.addEventListener("click", (event) => {
         // qui appelle la fonction avec une clé -1 pour revenir en arrière
         switchSlide(-1);
-    })
+      });
 
-    // écouteur sur l'évènement click sur la flèche next...
-    next.addEventListener('click', event => {
+      // écouteur sur l'évènement click sur la flèche next...
+      next.addEventListener("click", (event) => {
         // qui appelle la fonction avec une clé +1 pour l'image suivante
         switchSlide(+1);
-    })
+      });
 
-  
-  </script>
-</body>
+      // FIN ECOUTEURS
+    </script>
+  </body>
 </html>
