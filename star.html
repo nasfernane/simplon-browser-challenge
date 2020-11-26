@@ -1,58 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>allo ciné star</title>
-  <link rel="stylesheet" href="./assets/stylesheet/css/star.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-</head>
-<body onload="listenStars()">
-  <div class="star">
-    <h1>ALLO CINE ! Un click sur une des étoiles permettra des la passer au jaunes ainsi que toutes les étoiles précédentes
-    <br>(voir star.html)
-    </h1>
+  <head>
+    <meta charset="UTF-8" />
+    <title>allo ciné star</title>
+    <link rel="stylesheet" href="./assets/stylesheet/css/star.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body onload="listenStars()">
+    <div class="star">
+      <h1>
+        ALLO CINE ! Un click sur une des étoiles permettra des la passer au
+        jaunes ainsi que toutes les étoiles précédentes <br />(voir star.html)
+      </h1>
 
-    <ul id="list-of-stars">
-      <li><i class="fas fa-star"></i></li>
-      <li><i class="fas fa-star"></i></li>
-      <li><i class="fas fa-star"></i></li>
-      <li><i class="fas fa-star"></i></li>
-      <li><i class="fas fa-star"></i></li>
-    </ul>
-  </div>
-  <div class="test"></div>
-  <script>
-      
+      <ul id="list-of-stars">
+        <li><i class="fas fa-star"></i></li>
+        <li><i class="fas fa-star"></i></li>
+        <li><i class="fas fa-star"></i></li>
+        <li><i class="fas fa-star"></i></li>
+        <li><i class="fas fa-star"></i></li>
+      </ul>
+    </div>
+    <div class="test"></div>
+    <script>
+      // VARIABLES
+
       // on récupère les images d'étoiles dans une NodeList stockée dans une constante
-      const stars = document.querySelectorAll('#list-of-stars li');
+      const stars = document.querySelectorAll("#list-of-stars li");
       // on transforme la NodeLIst en tableau
       const starsArray = Array.from(stars);
 
+      // FIN VARIABLES
+
+      // FONCTIONS
       // on crée une fonction pour enlever ou supprimer la classe star-checked aux éléments voulus
       const addOrRemoveClass = () => {
-          // pour chaque élément du tableau...
-          starsArray.forEach(element => {
-            // si la position de l'étoile est inférieure ou égale à la position de l'évènement
-            if (starsArray.indexOf(element) <= starsArray.indexOf(event.currentTarget)){
-                // on lui ajoute la classe star-checked pour la mettre en jaune
-                element.classList.add("star-checked");
-            } else {
-                // sinon on lui supprime la classe
-                element.classList.remove("star-checked");
-            }
-          });
-      }
+        // pour chaque élément du tableau...
+        starsArray.forEach((element) => {
+          // si la position de l'étoile est inférieure ou égale à la position de l'évènement
+          if (starsArray.indexOf(element) <= starsArray.indexOf(event.currentTarget)) {
+            // on lui ajoute la classe star-checked pour la mettre en jaune
+            element.classList.add("star-checked");
+          } else {
+            // sinon on lui supprime la classe
+            element.classList.remove("star-checked");
+          }
+        });
+      };
 
       // on crée une fonction qu'on éxecute onload sur le body et qui se charge de créer un écouteur pour chaque élément du tableau
-    const listenStars = () => {
-        for(i=0; i < starsArray.length; i++) {
-            starsArray[i].addEventListener('click', addOrRemoveClass);
+      const listenStars = () => {
+        for (i = 0; i < starsArray.length; i++) {
+          starsArray[i].addEventListener("click", addOrRemoveClass);
         }
-    }
+      };
 
-
-      
-    //TODO
-  </script>
-</body>
+      // FIN FONCTIONS
+    </script>
+  </body>
 </html>
