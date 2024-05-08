@@ -1,4 +1,6 @@
-# JS-browser-challenge
+# (ARCHIVED) OLD SCHOOL PROJECT
+
+## JS-browser-challenge
 
 1. Créer un nouveau repertoire que vous nommerez comme vous voudrez
 2. Cloner le présent repo dans ce repertoire (git clone ...)
